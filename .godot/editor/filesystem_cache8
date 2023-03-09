@@ -1,8 +1,8 @@
 2a60927148abd1d33b818b535e306557
-::res://::1678321955
-HumanoidControl.tscn::PackedScene::2899766312934248254::1678321494::0::1::::<><>::uid://cho4820mf8fox<>uid://b0deu6lermtwc
-icon.svg::CompressedTexture2D::4605281618216000148::1668709865::1668709881::1::::<><>::
-Player.gd::GDScript::-1::1678147054::0::1::::<>CharacterBody3D<>::
-Player.tscn::PackedScene::5294885742702129055::1678316525::0::1::::<><>::res://Player.gd
-::res://Models/::1678321524
-mannequiny-0.4.0.glb::PackedScene::4147615137176910570::1678321421::1678321524::1::::<><>::
+::res://::1678365327
+HumanoidControl.tscn::PackedScene::2899766312934248254::1678364994::0::1::::<><>::uid://cho4820mf8fox
+icon.svg::CompressedTexture2D::4605281618216000148::1678322874::1678322874::1::::<><>::
+Player.gd::GDScript::-1::1678364945::0::1::::<>CharacterBody3D<>::
+Player.tscn::PackedScene::5294885742702129055::1678365143::0::1::::<><>::res://Player.gd<>uid://b0deu6lermtwc
+::res://Models/::1678322874
+mannequiny-0.4.0.glb::PackedScene::4147615137176910570::1678322874::1678322874::1::::<><>::

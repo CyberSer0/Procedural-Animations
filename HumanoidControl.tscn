@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhkwy0afvtcfe"]
+[gd_scene load_steps=4 format=3 uid="uid://bhkwy0afvtcfe"]
 
 [ext_resource type="PackedScene" uid="uid://cho4820mf8fox" path="res://Player.tscn" id="1_mjtfj"]
-[ext_resource type="PackedScene" uid="uid://b0deu6lermtwc" path="res://Models/mannequiny-0.4.0.glb" id="2_coxld"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4qyer"]
 
@@ -25,6 +24,3 @@ shape = SubResource("BoxShape3D_smv55")
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.0312166, 5.54116, -0.027216)
 
 [node name="Player" parent="." instance=ExtResource("1_mjtfj")]
-
-[node name="mannequiny-040" parent="." instance=ExtResource("2_coxld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0356913, 0, -2.64624)
