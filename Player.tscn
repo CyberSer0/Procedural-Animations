@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://cho4820mf8fox"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_1c7a7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1sbl8"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fwima"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tb712"]
+albedo_color = Color(0.466667, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k70vd"]
+material = SubResource("StandardMaterial3D_tb712")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ya7rm"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_wjkpn"]
+material = SubResource("StandardMaterial3D_ya7rm")
+radius = 0.1
+height = 0.2
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_1c7a7")
+speed = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_1sbl8")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0, -0.258819, 0.965926, 0, 0.965926, 0.258819, -1, 0, 0, 3, 2.3959, 0)
+
+[node name="Model" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_fwima")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.517184, -0.429805)
+mesh = SubResource("BoxMesh_k70vd")
+
+[node name="AimPoint" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0014894, 0.0051136, -0.0020206)
+mesh = SubResource("SphereMesh_wjkpn")

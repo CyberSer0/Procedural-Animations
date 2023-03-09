@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhkwy0afvtcfe"]
+
+[ext_resource type="PackedScene" uid="uid://cho4820mf8fox" path="res://Player.tscn" id="1_mjtfj"]
+[ext_resource type="PackedScene" uid="uid://b0deu6lermtwc" path="res://Models/mannequiny-0.4.0.glb" id="2_coxld"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4qyer"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_smv55"]
+size = Vector3(16, 1, 16)
+
+[node name="HumanoidControl" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Plane" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(7.83, 0, 0, 0, 1, 0, 0, 0, 7.82443, 0, 0, 0)
+mesh = SubResource("PlaneMesh_4qyer")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_smv55")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.0312166, 5.54116, -0.027216)
+
+[node name="Player" parent="." instance=ExtResource("1_mjtfj")]
+
+[node name="mannequiny-040" parent="." instance=ExtResource("2_coxld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0356913, 0, -2.64624)

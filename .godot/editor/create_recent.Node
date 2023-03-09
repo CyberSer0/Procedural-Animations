@@ -1,0 +1,10 @@
+StaticBody3D
+CollisionShape3D
+CharacterBody3D
+MeshInstance3D
+Node3D
+DirectionalLight3D
+Camera3D
+PhysicalBone3D
+BoneAttachment3D
+Skeleton3D
