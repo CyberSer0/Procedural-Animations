@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciyjtve6i2vaw"]
+
+[ext_resource type="Script" path="res://aim_point.gd" id="1_o68fy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ya7rm"]
+albedo_color = Color(0, 0.533333, 0.972549, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_wjkpn"]
+material = SubResource("StandardMaterial3D_ya7rm")
+radius = 0.1
+height = 0.2
+
+[node name="LeftLegAimPoint" type="Node3D"]
+script = ExtResource("1_o68fy")
+
+[node name="APModel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00450706, 0.015166, -0.00571514)
+mesh = SubResource("SphereMesh_wjkpn")
+skeleton = NodePath("../../RightLegAimPoint/Model")
