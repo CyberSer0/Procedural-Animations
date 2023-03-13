@@ -1,9 +1,4 @@
-res://Player.tscn
 res://HumanoidControl.tscn
-res://Player.gd
+res://Player.tscn
 res://left_leg_aim_point.tscn
 res://right_leg_aim_point.tscn
-res://left_leg_aim_point.gd
-res://aim_point.gd
-res://HumanoidControl.gd
-res://GLOBALS.gd
