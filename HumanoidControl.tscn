@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhkwy0afvtcfe"]
+[gd_scene load_steps=5 format=3 uid="uid://bhkwy0afvtcfe"]
 
 [ext_resource type="PackedScene" uid="uid://cho4820mf8fox" path="res://Player.tscn" id="1_mjtfj"]
+[ext_resource type="Script" path="res://CameraPoint.gd" id="2_s4kux"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4qyer"]
 
@@ -24,3 +25,12 @@ shape = SubResource("BoxShape3D_smv55")
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.0312166, 5.54116, -0.027216)
 
 [node name="Player" parent="." instance=ExtResource("1_mjtfj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+speed = 0.5
+
+[node name="CameraPoint" type="Marker3D" parent="."]
+script = ExtResource("2_s4kux")
+
+[node name="Camera3D" type="Camera3D" parent="CameraPoint"]
+transform = Transform3D(0.441506, -0.417083, 0.794427, 0, 0.885394, 0.464842, -0.897258, -0.205231, 0.390906, 4, 3.20037, 2)
+current = true

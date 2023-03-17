@@ -1,4 +1,6 @@
 res://HumanoidControl.tscn
 res://Player.tscn
-res://left_leg_aim_point.tscn
-res://right_leg_aim_point.tscn
+res://IKTarget.gd
+res://Player.gd
+res://Camera.gd
+res://CameraPoint.gd
