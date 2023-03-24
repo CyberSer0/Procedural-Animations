@@ -1,6 +1,7 @@
-res://HumanoidControl.tscn
 res://Player.tscn
-res://IKTarget.gd
+res://HumanoidControl.tscn
 res://Player.gd
-res://Camera.gd
-res://CameraPoint.gd
+res://IKTarget.gd
+res://IKTargetRay.gd
+res://IK.gd
+res://TargetContainer.gd

@@ -25,7 +25,6 @@ shape = SubResource("BoxShape3D_smv55")
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.0312166, 5.54116, -0.027216)
 
 [node name="Player" parent="." instance=ExtResource("1_mjtfj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 speed = 0.5
 
 [node name="CameraPoint" type="Marker3D" parent="."]

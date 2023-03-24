@@ -1,24 +1,24 @@
-@tool
 extends Node3D
 
-@export_node_path("Node3D") var step_target_path
-@onready var step_target = get_node(step_target_path)
+@export var step_target : Node3D
+@export var step_distance : float
 
-@export var step_distance : float = 5
+@export var adjacent_target : Node3D
 
+var is_stepping : bool = false
 
 func _process(delta):
-	var dist := global_position.distance_to(step_target.global_position)
-	if dist > step_distance:
-		tween_step(step_target.global_position)
+	if !is_stepping && !adjacent_target.is_stepping && abs(global_position.distance_to(step_target.global_position + Vector3(0.0, step_distance / 2, 0.0))) > step_distance:
+		step()	
 	pass
 	
 	
-func tween_step(target_pos: Vector3):
-	var tween := create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
-	tween.set_parallel(true)
-	tween.tween_property(self, "global_position:x", target_pos.x, 0.25)
-	tween.tween_property(self, "global_position:z", target_pos.z, 0.25)
-	tween.tween_property(self, "global_position:y", target_pos.y + 0.5, 0.15)
-	tween.set_parallel(false)
-	tween.tween_property(self, "global_position:y", target_pos.y, -0.1)
+func step():
+	var target_pos = step_target.global_position
+	var half_way = (global_position + step_target.global_position) / 2
+	print(target_pos, half_way)
+	is_stepping = true
+	var t = get_tree().create_tween()
+	t.tween_property(self, "global_position", half_way + owner.basis.y, 0.1)
+	t.tween_property(self, "global_position", target_pos, 0.1)
+	t.tween_callback(func(): is_stepping = false)

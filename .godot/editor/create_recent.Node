@@ -1,8 +1,11 @@
-Marker3D
 MeshInstance3D
+Node3D
+RayCast3D
+AnimationPlayer
+AnimationTree
+Marker3D
 Camera3D
 Node
-Node3D
 SkeletonIK3D
 BoneAttachment3D
 StaticBody3D
