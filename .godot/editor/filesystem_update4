@@ -1,7 +1,3 @@
 res://Player.tscn
 res://HumanoidControl.tscn
-res://Player.gd
-res://IKTarget.gd
-res://IKTargetRay.gd
-res://IK.gd
-res://TargetContainer.gd
+res://Player.tscn
