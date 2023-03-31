@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhkwy0afvtcfe"]
+[gd_scene load_steps=8 format=3 uid="uid://bhkwy0afvtcfe"]
 
 [ext_resource type="PackedScene" uid="uid://cho4820mf8fox" path="res://Player.tscn" id="1_mjtfj"]
 [ext_resource type="Script" path="res://CameraPoint.gd" id="2_s4kux"]
@@ -7,6 +7,14 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_smv55"]
 size = Vector3(16, 1, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6ap6"]
+albedo_color = Color(0.568627, 0.796078, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1gf1v"]
+material = SubResource("StandardMaterial3D_q6ap6")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tu62c"]
 
 [node name="HumanoidControl" type="Node3D"]
 
@@ -31,5 +39,14 @@ speed = 0.5
 script = ExtResource("2_s4kux")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPoint"]
-transform = Transform3D(0.441506, -0.417083, 0.794427, 0, 0.885394, 0.464842, -0.897258, -0.205231, 0.390906, 4, 3.20037, 2)
+transform = Transform3D(0.707107, -0.328693, 0.626068, 0, 0.885394, 0.464842, -0.707107, -0.328693, 0.626068, 4, 3.2, 4)
 current = true
+
+[node name="Testcube" type="StaticBody3D" parent="."]
+transform = Transform3D(0.722014, 0, 0.691879, 0, 1, 0, -0.691879, 0, 0.722014, -1, -0.152762, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Testcube"]
+mesh = SubResource("BoxMesh_1gf1v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Testcube"]
+shape = SubResource("BoxShape3D_tu62c")

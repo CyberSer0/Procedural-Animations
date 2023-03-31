@@ -11,3 +11,4 @@ func _process(delta):
 	global_position = parent.global_position + velocity * offset
 	
 	previous_position = parent.global_position
+	
