@@ -2,9 +2,12 @@ extends Node3D
 
 @export var step_target : Node3D
 @export var backstep_target : Node3D
-@export var step_distance : float
+@export var sidestep_target : Node3D
+@export var backsidestep_target : Node3D
 
 @export var adjacent_target : Node3D
+
+@export var step_distance : float
 
 @onready var temp_rot : Vector3 = rotation
 @onready var active_target : Node3D = step_target

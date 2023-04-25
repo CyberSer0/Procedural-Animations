@@ -16,25 +16,39 @@ signal move_aimpoint(location)
 func _ready():
 	
 	GLOBALS.PLAYER = self
-	
-	
-	
+
+
 func _physics_process(delta):
-	var dir = Input.get_axis("move_backwards", "move_forward")
-	translate(Vector3(0, 0, dir) * speed * delta)
-	
-#	doesn't work, need to change this
-#	translate(Vector3(0, (rightIK.position.y - leftIK.position.y) / 2, 0) * delta)
-	
-	if (dir >= 0): 
+	var zdir = Input.get_axis("move_backwards", "move_forward")
+	var xdir = Input.get_axis("move_right", "move_left")
+	translate(Vector3(xdir, 0, zdir) * speed * delta)
+
+
+	# redo this but with rotations
+
+	if (zdir > 0): 
 		rightIK.active_target = rightIK.step_target
 		leftIK.active_target = leftIK.step_target
-	else: 
+	elif (zdir < 0): 
 		rightIK.active_target = rightIK.backstep_target
 		leftIK.active_target = leftIK.backstep_target
-	
-	var a_dir = Input.get_axis("move_right", "move_left")
-	rotate_object_local(Vector3.UP, a_dir * turn_speed * delta)
-	
+	elif (xdir > 0):
+		rightIK.active_target = rightIK.sidestep_target
+		leftIK.active_target = leftIK.sidestep_target
+	elif (xdir < 0):
+		rightIK.active_target = rightIK.backsidestep_target
+		leftIK.active_target = leftIK.backsidestep_target
 
+#	if rightIK.is_stepping or leftIK.is_stepping:
+#		var position_tween = get_tree().create_tween()
+#		var flat_between := Vector2(rightIK.global_position.x, rightIK.global_position.z).lerp(Vector2(leftIK.global_position.x, leftIK.global_position.z), 0.5)
+#		position_tween.tween_property(self, "global_position", Vector3(flat_between.x, self.global_position.y, flat_between.y), 1)
+
+
+	var a_dir = Input.get_axis("rotate_right", "rotate_left")
+	rotate_object_local(Vector3.UP, a_dir * turn_speed * delta)
+
+
+func _exit_tree():
+	GLOBALS.PLAYER = null
 
