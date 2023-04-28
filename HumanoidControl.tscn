@@ -1,17 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhkwy0afvtcfe"]
+[gd_scene load_steps=10 format=3 uid="uid://bhkwy0afvtcfe"]
 
 [ext_resource type="PackedScene" uid="uid://cho4820mf8fox" path="res://Player.tscn" id="1_mjtfj"]
 [ext_resource type="Script" path="res://CameraPoint.gd" id="2_s4kux"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgmj1"]
+albedo_color = Color(0.490196, 0.490196, 0.490196, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_4qyer"]
+material = SubResource("StandardMaterial3D_qgmj1")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_smv55"]
-size = Vector3(16, 1, 16)
+size = Vector3(6, 1, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0ns5"]
+albedo_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3k23e"]
+material = SubResource("StandardMaterial3D_m0ns5")
+
+[sub_resource type="BoxMesh" id="BoxMesh_tafyr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bffh5"]
 
 [node name="HumanoidControl" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.962004, 0.273036, 0, -0.273036, 0.962004, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999891, 0.0147476, 0, -0.0147476, 0.999891, 0, 0, 0)
 
 [node name="Plane" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(7.83, 0, 0, 0, 1, 0, 0, 0, 7.82443, 0, 0, 0)
@@ -22,10 +36,24 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_smv55")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="StaticBody3D"]
+transform = Transform3D(-9.59262e-08, -0.287193, 0.957873, 0.0147476, 0.957768, 0.287162, -0.999891, 0.0141263, 0.00423531, 4, 0.603556, 2.00912)
+
+[node name="Plane" type="MeshInstance3D" parent="StaticBody3D/StaticBody3D"]
+transform = Transform3D(3.132, -3.55271e-15, -1.42109e-14, -2.13163e-14, 1.02064, -1.19209e-07, 1.42109e-13, 1.78814e-07, 2.34971, 0, 0, 0)
+mesh = SubResource("PlaneMesh_3k23e")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_smv55")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.0312166, 5.54116, -0.027216)
 
 [node name="Player" parent="." instance=ExtResource("1_mjtfj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000342846, 0.00638986, -0.00349522)
+floor_max_angle = 3.14159
 speed = 0.5
 
 [node name="CameraPoint" type="Marker3D" parent="."]
@@ -35,3 +63,61 @@ script = ExtResource("2_s4kux")
 [node name="Camera3D" type="Camera3D" parent="CameraPoint"]
 transform = Transform3D(-1, 4.06378e-08, -7.74036e-08, 0, 0.885394, 0.464842, 8.74228e-08, 0.464842, -0.885394, 0, 3.2, -4)
 current = true
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4"]
+mesh = SubResource("BoxMesh_tafyr")
+skeleton = NodePath("../../StaticBody3D4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
+shape = SubResource("BoxShape3D_bffh5")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.3, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
+mesh = SubResource("BoxMesh_tafyr")
+skeleton = NodePath("../../StaticBody3D3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("BoxShape3D_bffh5")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.4, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("BoxMesh_tafyr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_bffh5")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D5"]
+mesh = SubResource("BoxMesh_tafyr")
+skeleton = NodePath("../../StaticBody3D4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
+shape = SubResource("BoxShape3D_bffh5")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.1, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D6"]
+mesh = SubResource("BoxMesh_tafyr")
+skeleton = NodePath("../../StaticBody3D3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D6"]
+shape = SubResource("BoxShape3D_bffh5")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.3, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D7"]
+mesh = SubResource("BoxMesh_tafyr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D7"]
+shape = SubResource("BoxShape3D_bffh5")

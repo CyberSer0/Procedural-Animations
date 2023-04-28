@@ -14,28 +14,26 @@ signal move_aimpoint(location)
 ###############################################################################
 
 func _ready():
-	
 	GLOBALS.PLAYER = self
 
 
 func _physics_process(delta):
-	var zdir = Input.get_axis("move_backwards", "move_forward")
-	var xdir = Input.get_axis("move_right", "move_left")
-	translate(Vector3(xdir, 0, zdir) * speed * delta)
-
-
+	var inputZDir = Input.get_axis("move_backwards", "move_forward")
+	var inputXDir = Input.get_axis("move_right", "move_left")
+#	translate(Vector3(inputXDir, 0, inputZDi) * speed * delta)
+	
 	# redo this but with rotations
 
-	if (zdir > 0): 
+	if (inputZDir > 0): 
 		rightIK.active_target = rightIK.step_target
 		leftIK.active_target = leftIK.step_target
-	elif (zdir < 0): 
+	elif (inputZDir < 0): 
 		rightIK.active_target = rightIK.backstep_target
 		leftIK.active_target = leftIK.backstep_target
-	elif (xdir > 0):
+	elif (inputXDir > 0):
 		rightIK.active_target = rightIK.sidestep_target
 		leftIK.active_target = leftIK.sidestep_target
-	elif (xdir < 0):
+	elif (inputXDir < 0):
 		rightIK.active_target = rightIK.backsidestep_target
 		leftIK.active_target = leftIK.backsidestep_target
 
@@ -46,7 +44,12 @@ func _physics_process(delta):
 
 
 	var a_dir = Input.get_axis("rotate_right", "rotate_left")
-	rotate_object_local(Vector3.UP, a_dir * turn_speed * delta)
+	rotate(Vector3.UP, a_dir * turn_speed * delta)
+
+#	forward facing rotation needs to be added
+	
+	velocity = Vector3(inputXDir, 0, inputZDir).normalized() * speed
+	move_and_slide()
 
 
 func _exit_tree():

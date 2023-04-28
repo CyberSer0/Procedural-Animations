@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cho4820mf8fox"]
+[gd_scene load_steps=17 format=3 uid="uid://cho4820mf8fox"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_1c7a7"]
 [ext_resource type="Script" path="res://IK.gd" id="2_nv47l"]
@@ -241,9 +241,10 @@ material = SubResource("StandardMaterial3D_3hah7")
 radius = 0.05
 height = 0.1
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xjhrw"]
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("rightIK", "leftIK")]
 collision_layer = 2
-wall_min_slide_angle = 0.994838
 floor_stop_on_slope = false
 script = ExtResource("1_1c7a7")
 speed = 5.0
@@ -652,6 +653,7 @@ offset = 10.0
 
 [node name="LeftStepRay" type="RayCast3D" parent="Targets" node_paths=PackedStringArray("step_target")]
 transform = Transform3D(-1, -8.74227e-08, 0, 8.44439e-08, -0.965926, 0.258819, -2.26267e-08, 0.258819, 0.965926, 0.200093, 0.00420707, 0.339239)
+visible = false
 debug_shape_custom_color = Color(0, 0, 1, 1)
 script = ExtResource("3_8yvrw")
 step_target = NodePath("LeftLegStepTarget")
@@ -718,3 +720,7 @@ step_target = NodePath("RightLegStepTarget")
 
 [node name="RightLegStepTarget" type="Node3D" parent="Targets/BackRightStepRightRay"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000252004, -0.00211195, -3.78489e-06)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.09, 0, 0, 0, -1.74846e-08, 0.09, 0, -0.4, -3.93403e-09, 0, 1.62, 0.396338)
+mesh = SubResource("CapsuleMesh_xjhrw")

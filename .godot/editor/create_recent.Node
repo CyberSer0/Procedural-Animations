@@ -1,6 +1,9 @@
 MeshInstance3D
 CollisionShape3D
 StaticBody3D
+CharacterBody3D
+RigidBody3D
+RigidBody2D
 Node3D
 RayCast3D
 AnimationPlayer
@@ -10,7 +13,6 @@ Camera3D
 Node
 SkeletonIK3D
 BoneAttachment3D
-CharacterBody3D
 DirectionalLight3D
 PhysicalBone3D
 Skeleton3D
