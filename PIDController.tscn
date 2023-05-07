@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cviufid148x3o"]
+
+[ext_resource type="Script" path="res://PIDController.gd" id="1_u6kpr"]
+
+[node name="PIDController" type="Node3D"]
+script = ExtResource("1_u6kpr")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.01

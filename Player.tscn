@@ -1,14 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://cho4820mf8fox"]
+[gd_scene load_steps=18 format=3 uid="uid://cho4820mf8fox"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_1c7a7"]
+[ext_resource type="PackedScene" uid="uid://cviufid148x3o" path="res://PIDController.tscn" id="2_4n7xd"]
 [ext_resource type="Script" path="res://IK.gd" id="2_nv47l"]
 [ext_resource type="Script" path="res://IKTargetRay.gd" id="3_8yvrw"]
 [ext_resource type="Script" path="res://IKTarget.gd" id="3_j4lvc"]
 [ext_resource type="Script" path="res://TargetContainer.gd" id="4_hndf6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vbv7u"]
-radius = 0.274732
-height = 2.078
+radius = 0.19418
+height = 0.665563
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wrlw"]
 resource_name = "Azul"
@@ -243,17 +244,21 @@ height = 0.1
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xjhrw"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("rightIK", "leftIK")]
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("rightIK", "leftIK")]
 collision_layer = 2
-floor_stop_on_slope = false
 script = ExtResource("1_1c7a7")
 speed = 5.0
 rightIK = NodePath("RightIKTarget")
 leftIK = NodePath("LeftIKTarget")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97623, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1346, 0)
 shape = SubResource("CapsuleShape3D_vbv7u")
+
+[node name="PIDController" parent="." instance=ExtResource("2_4n7xd")]
+Kp = 1.0
+Ki = 0.4
+Kd = 0.6
 
 [node name="Model" type="Node3D" parent="."]
 
