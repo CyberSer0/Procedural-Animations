@@ -1,5 +1,8 @@
 res://HumanoidControl.tscn
 res://Player.tscn
+<<<<<<< HEAD
 res://Player.gd
 res://PIDController.tscn
 res://PIDController.gd
+=======
+>>>>>>> main

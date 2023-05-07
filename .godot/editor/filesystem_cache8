@@ -1,4 +1,5 @@
 2a60927148abd1d33b818b535e306557
+<<<<<<< HEAD
 ::res://::1683310295
 CameraPoint.gd::GDScript::-1::1681454331::0::1::::<>Marker3D<>::
 GLOBALS.gd::GDScript::-1::1678458604::0::1::::<>Node<>::
@@ -14,3 +15,20 @@ TargetContainer.gd::GDScript::-1::1680250007::0::1::::<>Node3D<>::
 ::res://Models/::1679656393
 mannequiny-0.4.0.glb::PackedScene::4147615137176910570::1679656419::1679656393::1::::<><>::
 mannequiny-0.4.1.glb::PackedScene::6363177001817148464::1679652396::1679652440::1::::<><>::
+=======
+::res://::1682802607
+CameraPoint.gd::GDScript::-1::1682440093::0::1::::<>Marker3D<>::
+GLOBALS.gd::GDScript::-1::1678418696::0::1::::<>Node<>::
+HumanoidControl.gd::GDScript::-1::1678417803::0::1::::<>Node3D<>::
+HumanoidControl.tscn::PackedScene::2899766312934248254::1682649114::0::1::::<><>::uid://cho4820mf8fox<>res://CameraPoint.gd
+icon.svg::CompressedTexture2D::4605281618216000148::1668713465::1668713481::1::::<><>::
+IK.gd::GDScript::-1::1679652015::0::1::::<>SkeletonIK3D<>::
+IKTarget.gd::GDScript::-1::1682440093::0::1::::<>Node3D<>::
+IKTargetRay.gd::GDScript::-1::1679652009::0::1::::<>RayCast3D<>::
+Player.gd::GDScript::-1::1682649114::0::1::::<>CharacterBody3D<>::
+Player.tscn::PackedScene::5294885742702129055::1682649209::0::1::::<><>::res://Player.gd<>res://IK.gd<>res://IKTargetRay.gd<>res://IKTarget.gd<>res://TargetContainer.gd
+TargetContainer.gd::GDScript::-1::1680247778::0::1::::<>Node3D<>::
+::res://Models/::1680209859
+mannequiny-0.4.0.glb::PackedScene::4147615137176910570::1680209859::1679645165::1::::<><>::
+mannequiny-0.4.1.glb::PackedScene::6363177001817148464::1679645102::1679645165::1::::<><>::
+>>>>>>> main

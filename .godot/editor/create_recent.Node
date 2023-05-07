@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 RigidBody3D
 Timer
+=======
+Label
+TextEdit
+CanvasLayer
+>>>>>>> main
 MeshInstance3D
 CollisionShape3D
 StaticBody3D
