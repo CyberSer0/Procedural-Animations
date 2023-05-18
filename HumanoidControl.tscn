@@ -27,6 +27,21 @@ size = Vector3(6.26153, 1, 4.65542)
 
 [node name="HumanoidControl" type="Node3D"]
 
+[node name="Player" parent="." instance=ExtResource("1_mjtfj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000342846, 0.00638986, -0.00349522)
+speed = 0.5
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.0312166, 5.54116, -0.027216)
+
+[node name="CameraPoint" type="Marker3D" parent="."]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0, 0, 0)
+script = ExtResource("2_s4kux")
+
+[node name="Camera3D" type="Camera3D" parent="CameraPoint"]
+transform = Transform3D(-1, 4.06378e-08, -7.74036e-08, 0, 0.885394, 0.464842, 8.74228e-08, 0.464842, -0.885394, 0, 3.2, -4)
+current = true
+
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.999891, 0.0147476, 0, -0.0147476, 0.999891, 0, 0, 0)
 
@@ -50,22 +65,6 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_d8b16")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.0312166, 5.54116, -0.027216)
-
-[node name="Player" parent="." instance=ExtResource("1_mjtfj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000342846, 0.00638986, -0.00349522)
-floor_max_angle = 3.14159
-speed = 0.5
-
-[node name="CameraPoint" type="Marker3D" parent="."]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0, 0, 0)
-script = ExtResource("2_s4kux")
-
-[node name="Camera3D" type="Camera3D" parent="CameraPoint"]
-transform = Transform3D(-1, 4.06378e-08, -7.74036e-08, 0, 0.885394, 0.464842, 8.74228e-08, 0.464842, -0.885394, 0, 3.2, -4)
-current = true
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.2, 0)

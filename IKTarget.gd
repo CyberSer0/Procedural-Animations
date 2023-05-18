@@ -18,7 +18,6 @@ var is_stepping : bool = false
 func _process(delta):
 	if !is_stepping && !adjacent_target.is_stepping && abs(global_position.distance_to(active_target.global_position + Vector3(0.0, step_distance / 2, 0.0))) > step_distance:
 		step()	
-	
 	pass
 	
 	
@@ -31,3 +30,8 @@ func step():
 	t.tween_property(self, "global_position", half_way + owner.basis.y - Vector3(0, 0.4, 0), 0.25)
 	t.tween_property(self, "global_position", target_pos, 0.1)
 	t.tween_callback(func(): is_stepping = false)
+#	t.tween_property($"../LeftIKTarget", "global_position", half_way + owner.basis.y - Vector3(0, 0.4, 0), 0.25)
+#	t.tween_property($"../LeftIKTarget", "global_position", target_pos, 0.1)
+#	t.tween_callback(func(): is_stepping = false)
+	
+	# TODO convert to dominant leg method - leg goes one after another

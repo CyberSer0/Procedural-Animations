@@ -38,16 +38,6 @@ func _physics_process(delta):
 		rightIK.active_target = rightIK.backsidestep_target
 		leftIK.active_target = leftIK.backsidestep_target
 
-#	if rightIK.is_stepping or leftIK.is_stepping:
-#		var position_tween = get_tree().create_tween()
-#		var flat_between := Vector2(rightIK.global_position.x, rightIK.global_position.z).lerp(Vector2(leftIK.global_position.x, leftIK.global_position.z), 0.5)
-#		position_tween.tween_property(self, "global_position", Vector3(flat_between.x, self.global_position.y, flat_between.y), 1)
-
-
-#	var a_dir = Input.get_axis("rotate_right", "rotate_left")
-#	var finalAngle = a_dir * turn_speed;
-#	rotate_object_local(Vector3.UP, finalAngle * delta)
-#	forward facing rotation needs to be added
 	
 
 func _exit_tree():
@@ -55,17 +45,21 @@ func _exit_tree():
 
 
 func _integrate_forces(state):
-	var target_position = global_position + Vector3(Input.get_axis("rotate_right", "rotate_left"), 0, 0) * transform.basis.y
+	var target_position = global_position + (transform.basis.z * Input.get_axis("move_backwards", "move_forward") + transform.basis.x * Input.get_axis("move_right", "move_left")) / 100
 #	look_follow(state, global_transform, target_position)
-	apply_torque(Vector3(0.0, Input.get_axis("rotate_right", "rotate_left") * 0.1, 0.0))
 	
-	apply_torque(Vector3(   $PIDController.calculate(0, rotation_degrees.x),
-							0.0,
-							$PIDController.calculate(0, rotation_degrees.z)))
-	
-	apply_force(Vector3(	0.0,
-							$PIDController.calculate(9.81, position.y),
+	apply_torque_impulse(Vector3(   0.0,
+							Input.get_axis("rotate_right", "rotate_left") * 0.01,
 							0.0))
+	
+	apply_central_impulse(Vector3(	0.0,
+									$PIDController.calculate(0, position.y),
+									0.0))
+	
+	apply_central_impulse(Vector3(	$PIDController.calculate(target_position.x, global_position.x),
+									$PIDController.calculate(target_position.y, global_position.y),
+									$PIDController.calculate(target_position.z, global_position.z)))
+	
 	
 	
 #	apply_central_force((Input.get_axis("move_backwards", "move_forward") * transform.basis.z + Input.get_axis("move_right", "move_left") * transform.basis.x) * speed)

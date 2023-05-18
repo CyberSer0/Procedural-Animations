@@ -1,15 +1,12 @@
-<<<<<<< HEAD
+CharacterBody3D
 RigidBody3D
 Timer
-=======
 Label
 TextEdit
 CanvasLayer
->>>>>>> main
 MeshInstance3D
 CollisionShape3D
 StaticBody3D
-CharacterBody3D
 RigidBody2D
 Node3D
 RayCast3D
