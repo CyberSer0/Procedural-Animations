@@ -725,3 +725,7 @@ step_target = NodePath("RightLegStepTarget")
 
 [node name="RightLegStepTarget" type="Node3D" parent="Targets/BackRightStepRightRay"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000252004, -0.00211195, -3.78489e-06)
+
+[node name="FloorDetector" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.818804, 0)
+target_position = Vector3(0, -0.8, 0)

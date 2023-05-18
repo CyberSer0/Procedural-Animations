@@ -52,13 +52,13 @@ func _integrate_forces(state):
 							Input.get_axis("rotate_right", "rotate_left") * 0.01,
 							0.0))
 	
+	apply_central_impulse(Vector3( 	0.0,
+									0.0,
+									0.0))
+	
 	apply_central_impulse(Vector3(	0.0,
 									$PIDController.calculate(0, position.y),
 									0.0))
-	
-	apply_central_impulse(Vector3(	$PIDController.calculate(target_position.x, global_position.x),
-									$PIDController.calculate(target_position.y, global_position.y),
-									$PIDController.calculate(target_position.z, global_position.z)))
 	
 	
 	

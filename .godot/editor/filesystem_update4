@@ -1,6 +1,3 @@
-res://Player.tscn
-res://PIDController.gd
 res://HumanoidControl.tscn
-res://NewKinematicCharacter/KinematicChar.tscn
-res://IKTarget.gd
+res://Player.tscn
 res://Player.gd

@@ -1,3 +1,4 @@
+RayCast3D
 CharacterBody3D
 RigidBody3D
 Timer
@@ -9,7 +10,6 @@ CollisionShape3D
 StaticBody3D
 RigidBody2D
 Node3D
-RayCast3D
 AnimationPlayer
 AnimationTree
 Marker3D
