@@ -6,7 +6,7 @@ extends Node3D
 @export var Kd : float
 
 var integral : float = 0.0
-var prev_err : float = 0.0
+@export var prev_err : float = 0.0
 var max_integral : float = 200.0
 
 var first_frame_flag : int = 1

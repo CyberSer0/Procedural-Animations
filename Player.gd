@@ -50,11 +50,11 @@ func _integrate_forces(state):
 									0.0))
 	
 	apply_central_impulse((transform.basis.x * Input.get_axis("move_right", "move_left") + transform.basis.z * Input.get_axis("move_backwards", "move_forward")).normalized() / 100)
-	
-	if $FloorDetector.is_colliding():
-		apply_central_force(Vector3(	0.0,
-										$PIDController.calculate($FloorDetector.get_collision_point().y, global_position.y) * gravity * mass,
-										0.0))
+
+	var standing_force : float = $PIDController.calculate($FloorDetector.get_collision_point().y, global_position.y) * gravity * mass
+	apply_central_force(Vector3(	0.0,
+									standing_force,
+									0.0))
 									
 	
 	

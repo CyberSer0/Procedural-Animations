@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bhkwy0afvtcfe"]
 
-[ext_resource type="PackedScene" uid="uid://byppxwmnf4igs" path="res://NewKinematicCharacter/KinematicChar.tscn" id="1_yclak"]
+[ext_resource type="PackedScene" uid="uid://cho4820mf8fox" path="res://Player.tscn" id="2_kfwrc"]
 [ext_resource type="Script" path="res://CameraPoint.gd" id="2_s4kux"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgmj1"]
@@ -26,8 +26,6 @@ size = Vector3(6.26153, 1, 4.65542)
 [sub_resource type="BoxShape3D" id="BoxShape3D_bffh5"]
 
 [node name="HumanoidControl" type="Node3D"]
-
-[node name="KinematicChar" parent="." instance=ExtResource("1_yclak")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.0312166, 5.54116, -0.027216)
@@ -121,3 +119,5 @@ mesh = SubResource("BoxMesh_tafyr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D7"]
 shape = SubResource("BoxShape3D_bffh5")
+
+[node name="Player" parent="." instance=ExtResource("2_kfwrc")]

@@ -257,8 +257,8 @@ shape = SubResource("CapsuleShape3D_vbv7u")
 
 [node name="PIDController" parent="." instance=ExtResource("2_4n7xd")]
 dt = 0.5
-Kp = 3.0
-Ki = 2.0
+Kp = 7.0
+Ki = 90.0
 
 [node name="Model" type="Node3D" parent="."]
 

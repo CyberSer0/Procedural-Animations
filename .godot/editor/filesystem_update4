@@ -1,3 +1,6 @@
 res://HumanoidControl.tscn
 res://Player.tscn
 res://NewKinematicCharacter/KinematicChar.tscn
+res://PIDController.gd
+res://Player.gd
+res://PIDController.tscn
