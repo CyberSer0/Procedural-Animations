@@ -1,3 +1,7 @@
-res://HumanoidControl.tscn
 res://Player.tscn
 res://Player.gd
+res://HumanoidControl.tscn
+res://NewKinematicCharacter/KinematicChar.tscn
+res://IKTarget.gd
+res://NewKinematicCharacter/KinematicChar.gd
+res://NewKinematicCharacter/LegTarget.gd

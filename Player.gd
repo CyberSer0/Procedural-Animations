@@ -45,30 +45,19 @@ func _exit_tree():
 
 
 func _integrate_forces(state):
-	var target_position = global_position + (transform.basis.z * Input.get_axis("move_backwards", "move_forward") + transform.basis.x * Input.get_axis("move_right", "move_left")) / 100
-#	look_follow(state, global_transform, target_position)
-	
 	apply_torque_impulse(Vector3(   0.0,
-							Input.get_axis("rotate_right", "rotate_left") * 0.01,
-							0.0))
-	
-	apply_central_impulse(Vector3( 	0.0,
-									0.0,
+									Input.get_axis("rotate_right", "rotate_left") * 0.01,
 									0.0))
 	
-	apply_central_impulse(Vector3(	0.0,
-									$PIDController.calculate(0, position.y),
-									0.0))
+	apply_central_impulse((transform.basis.x * Input.get_axis("move_right", "move_left") + transform.basis.z * Input.get_axis("move_backwards", "move_forward")).normalized() / 100)
+	
+	if $FloorDetector.is_colliding():
+		apply_central_force(Vector3(	0.0,
+										$PIDController.calculate($FloorDetector.get_collision_point().y, global_position.y) * gravity * mass,
+										0.0))
+									
 	
 	
 	
 #	apply_central_force((Input.get_axis("move_backwards", "move_forward") * transform.basis.z + Input.get_axis("move_right", "move_left") * transform.basis.x) * speed)
-
-func look_follow(state : PhysicsDirectBodyState3D, current_transform : Transform3D, target_position):
-	var up_direction = Vector3(0, 1, 0)
-	var current_direction = current_transform.basis * Vector3(0, 0, 1)
-	var target_dir = (target_position - current_transform.origin).normalized()
-	var rotation_angle = acos(current_direction.y) - acos(target_dir.y)
-	
-	state.angular_velocity = up_direction * (rotation_angle / state.step)
 

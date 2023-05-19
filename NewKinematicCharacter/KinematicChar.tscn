@@ -1,4 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://byppxwmnf4igs"]
+[gd_scene load_steps=13 format=3 uid="uid://byppxwmnf4igs"]
+
+[ext_resource type="Script" path="res://NewKinematicCharacter/KinematicChar.gd" id="1_5i8ij"]
+[ext_resource type="Script" path="res://NewKinematicCharacter/LegTarget.gd" id="2_bmt3r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bos7a"]
+size = Vector3(0.260438, 0.55859, 0.24978)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5im1"]
 resource_name = "Azul"
@@ -215,13 +221,34 @@ bind/46/name = &"index_03.l"
 bind/46/bone = -1
 bind/46/pose = Transform3D(-0.0424963, -0.0160099, 0.998968, 0.99889, 0.0196583, 0.042808, -0.0203235, 0.999679, 0.0151567, 0.0344626, -0.817136, -1.41592)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bh42m"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_6twit"]
+material = SubResource("StandardMaterial3D_bh42m")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7so8"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_agdl7"]
+material = SubResource("StandardMaterial3D_r7so8")
+radius = 0.05
+height = 0.1
+
 [node name="KinematicChar" type="CharacterBody3D"]
+script = ExtResource("1_5i8ij")
 
-[node name="mannequiny-041" type="Node3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19245, 0.00799242)
+shape = SubResource("BoxShape3D_bos7a")
 
-[node name="root" type="Node3D" parent="mannequiny-041"]
+[node name="Model" type="Node3D" parent="."]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="mannequiny-041/root"]
+[node name="root" type="Node3D" parent="Model"]
+
+[node name="Skeleton3D" type="Skeleton3D" parent="Model/root"]
 bones/0/name = "pelvis"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, -6.82121e-13, -1.6608e-05, -3.34571e-06, 0.979498, -0.201452, 1.62675e-05, 0.201452, 0.979498, -1.26162e-18, 0.94767, 0.01039)
@@ -552,6 +579,45 @@ bones/46/position = Vector3(0, 0.0307386, 1.46829e-07)
 bones/46/rotation = Quaternion(-0.00613408, 0.00207346, -0.0244957, 0.999679)
 bones/46/scale = Vector3(1, 1, 1)
 
-[node name="body001" type="MeshInstance3D" parent="mannequiny-041/root/Skeleton3D"]
+[node name="body001" type="MeshInstance3D" parent="Model/root/Skeleton3D"]
 mesh = SubResource("ArrayMesh_p2n8i")
 skin = SubResource("Skin_hghs0")
+
+[node name="RightLegIK" type="SkeletonIK3D" parent="Model/root/Skeleton3D"]
+process_priority = 1
+root_bone = &"thigh.r"
+tip_bone = &"gd_foot_handle.r"
+
+[node name="LeftLegIK" type="SkeletonIK3D" parent="Model/root/Skeleton3D"]
+process_priority = 1
+root_bone = &"thigh.l"
+tip_bone = &"gd_foot_handle.l"
+
+[node name="RightArmIK" type="SkeletonIK3D" parent="Model/root/Skeleton3D"]
+process_priority = 1
+root_bone = &"clavicle.r"
+tip_bone = &"hand.r"
+
+[node name="LeftArmIK" type="SkeletonIK3D" parent="Model/root/Skeleton3D"]
+process_priority = 1
+root_bone = &"clavicle.l"
+tip_bone = &"hand.l"
+
+[node name="FloorDetector" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.878977, 0)
+
+[node name="RightLegTarget" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.197, 0, 0)
+script = ExtResource("2_bmt3r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RightLegTarget"]
+mesh = SubResource("SphereMesh_6twit")
+
+[node name="LeftLegTarget" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.196694, 0, 0)
+script = ExtResource("2_bmt3r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LeftLegTarget"]
+mesh = SubResource("SphereMesh_agdl7")
+
+[node name="RayCasts" type="Node3D" parent="."]

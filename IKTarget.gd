@@ -12,6 +12,8 @@ extends Node3D
 @onready var temp_rot : Vector3 = rotation
 @onready var active_target : Node3D = step_target
 
+@export var is_standing : int = 0.0
+
 var is_stepping : bool = false
 
 
@@ -19,6 +21,9 @@ func _process(delta):
 	if !is_stepping && !adjacent_target.is_stepping && abs(global_position.distance_to(active_target.global_position + Vector3(0.0, step_distance / 2, 0.0))) > step_distance:
 		step()	
 	pass
+	
+	if global_position.distance_to(active_target.global_position) < 0.05: is_standing = 1
+	else: is_standing = 0
 	
 	
 func step():
