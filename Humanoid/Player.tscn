@@ -1,11 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cho4820mf8fox"]
+[gd_scene load_steps=17 format=3 uid="uid://sc3qqt7r5bwk"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_1c7a7"]
-[ext_resource type="PackedScene" uid="uid://cviufid148x3o" path="res://PIDController.tscn" id="2_4n7xd"]
-[ext_resource type="Script" path="res://IK.gd" id="2_nv47l"]
-[ext_resource type="Script" path="res://IKTargetRay.gd" id="3_8yvrw"]
-[ext_resource type="Script" path="res://IKTarget.gd" id="3_j4lvc"]
+[ext_resource type="Script" path="res://Humanoid/Player.gd" id="1_od1jr"]
+[ext_resource type="PackedScene" uid="uid://cviufid148x3o" path="res://Scenes/PIDController.tscn" id="2_4n7xd"]
+[ext_resource type="Script" path="res://Humanoid/IK.gd" id="3_hurch"]
 [ext_resource type="Script" path="res://TargetContainer.gd" id="4_hndf6"]
+[ext_resource type="Script" path="res://Humanoid/IKTarget.gd" id="4_vyt5d"]
+[ext_resource type="Script" path="res://Humanoid/IKTargetRay.gd" id="6_udx74"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vbv7u"]
 radius = 0.19418
@@ -246,7 +246,7 @@ height = 0.1
 collision_layer = 2
 angular_damp_mode = 1
 angular_damp = 0.9
-script = ExtResource("1_1c7a7")
+script = ExtResource("1_od1jr")
 speed = 5.0
 rightIK = NodePath("RightIKTarget")
 leftIK = NodePath("LeftIKTarget")
@@ -257,8 +257,8 @@ shape = SubResource("CapsuleShape3D_vbv7u")
 
 [node name="PIDController" parent="." instance=ExtResource("2_4n7xd")]
 dt = 0.5
-Kp = 7.0
-Ki = 90.0
+Kp = 3.0
+Ki = 2.0
 
 [node name="Model" type="Node3D" parent="."]
 
@@ -608,7 +608,7 @@ target = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 use_magnet = true
 magnet = Vector3(0, 0, 1)
 target_node = NodePath("../../../../LeftIKTarget")
-script = ExtResource("2_nv47l")
+script = ExtResource("3_hurch")
 
 [node name="RightLegIK" type="SkeletonIK3D" parent="Model/root/Skeleton3D"]
 process_priority = 1
@@ -618,12 +618,12 @@ target = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 use_magnet = true
 magnet = Vector3(0, 0, 1)
 target_node = NodePath("../../../../RightIKTarget")
-script = ExtResource("2_nv47l")
+script = ExtResource("3_hurch")
 
 [node name="RightIKTarget" type="Node3D" parent="." node_paths=PackedStringArray("step_target", "backstep_target", "sidestep_target", "backsidestep_target", "adjacent_target")]
 transform = Transform3D(-1, 6.69697e-08, 5.61943e-08, 0, -0.642788, 0.766045, 8.74228e-08, 0.766045, 0.642788, -0.2, -0.05, 0)
 top_level = true
-script = ExtResource("3_j4lvc")
+script = ExtResource("4_vyt5d")
 step_target = NodePath("../Targets/RightStepRay/RightLegStepTarget")
 backstep_target = NodePath("../Targets/BackRightStepRay/RightLegStepTarget")
 sidestep_target = NodePath("../Targets/RightStepRightRay/RightLegStepTarget")
@@ -639,7 +639,7 @@ skeleton = NodePath("../../Targets/LeftStepRay/LeftLegStepTarget")
 [node name="LeftIKTarget" type="Node3D" parent="." node_paths=PackedStringArray("step_target", "backstep_target", "sidestep_target", "backsidestep_target", "adjacent_target")]
 transform = Transform3D(-1, 6.69697e-08, 5.61943e-08, 0, -0.642788, 0.766045, 8.74228e-08, 0.766045, 0.642788, 0.2, -0.05, 0)
 top_level = true
-script = ExtResource("3_j4lvc")
+script = ExtResource("4_vyt5d")
 step_target = NodePath("../Targets/LeftStepRay/LeftLegStepTarget")
 backstep_target = NodePath("../Targets/BackLeftStepRay/LeftLegStepTarget")
 sidestep_target = NodePath("../Targets/LeftStepLeftRay/LeftLegStepTarget")
@@ -658,9 +658,8 @@ offset = 10.0
 
 [node name="LeftStepRay" type="RayCast3D" parent="Targets" node_paths=PackedStringArray("step_target")]
 transform = Transform3D(-1, -8.74227e-08, 0, 8.44439e-08, -0.965926, 0.258819, -2.26267e-08, 0.258819, 0.965926, 0.200093, 0.00420707, 0.339239)
-visible = false
 debug_shape_custom_color = Color(0, 0, 1, 1)
-script = ExtResource("3_8yvrw")
+script = ExtResource("6_udx74")
 step_target = NodePath("LeftLegStepTarget")
 
 [node name="LeftLegStepTarget" type="Node3D" parent="Targets/LeftStepRay"]
@@ -668,7 +667,7 @@ step_target = NodePath("LeftLegStepTarget")
 [node name="BackLeftStepRay" type="RayCast3D" parent="Targets" node_paths=PackedStringArray("step_target")]
 transform = Transform3D(-1, 8.74227e-08, 0, -8.44439e-08, -0.965926, -0.258819, -2.26267e-08, -0.258819, 0.965926, 0.198321, 0.00787252, -0.317861)
 debug_shape_custom_color = Color(0, 1, 1, 1)
-script = ExtResource("3_8yvrw")
+script = ExtResource("6_udx74")
 step_target = NodePath("LeftLegStepTarget")
 
 [node name="LeftLegStepTarget" type="Node3D" parent="Targets/BackLeftStepRay"]
@@ -676,7 +675,7 @@ step_target = NodePath("LeftLegStepTarget")
 [node name="LeftStepLeftRay" type="RayCast3D" parent="Targets" node_paths=PackedStringArray("step_target")]
 transform = Transform3D(2.10847e-08, 0.258819, 0.965926, 8.44439e-08, -0.965926, 0.258819, 1, 7.61094e-08, -4.2222e-08, 0.45, 0.004, 0.026)
 debug_shape_custom_color = Color(0, 0, 1, 1)
-script = ExtResource("3_8yvrw")
+script = ExtResource("6_udx74")
 step_target = NodePath("LeftLegStepTarget")
 
 [node name="LeftLegStepTarget" type="Node3D" parent="Targets/LeftStepLeftRay"]
@@ -684,7 +683,7 @@ step_target = NodePath("LeftLegStepTarget")
 [node name="BackLeftStepLeftRay" type="RayCast3D" parent="Targets" node_paths=PackedStringArray("step_target")]
 transform = Transform3D(2.10847e-08, -0.258819, 0.965926, -8.44439e-08, -0.965926, -0.258819, 1, -7.61094e-08, -4.2222e-08, -0.08, 0.004, 0.026)
 debug_shape_custom_color = Color(0, 1, 1, 1)
-script = ExtResource("3_8yvrw")
+script = ExtResource("6_udx74")
 step_target = NodePath("LeftLegStepTarget")
 
 [node name="LeftLegStepTarget" type="Node3D" parent="Targets/BackLeftStepLeftRay"]
@@ -693,7 +692,7 @@ transform = Transform3D(1, 7.10543e-15, 3.55271e-15, 0, 1, 1.49012e-08, 0, -1.49
 [node name="RightStepRay" type="RayCast3D" parent="Targets" node_paths=PackedStringArray("step_target")]
 transform = Transform3D(-1, 8.74227e-08, 0, -8.44439e-08, -0.965926, 0.258819, 2.26267e-08, 0.258819, 0.965926, -0.199966, 0.00210326, 0.339547)
 debug_shape_custom_color = Color(1, 0, 0, 1)
-script = ExtResource("3_8yvrw")
+script = ExtResource("6_udx74")
 step_target = NodePath("RightLegStepTarget")
 
 [node name="RightLegStepTarget" type="Node3D" parent="Targets/RightStepRay"]
@@ -702,7 +701,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000252004, -0.00211195, -3.
 [node name="BackRightStepRay" type="RayCast3D" parent="Targets" node_paths=PackedStringArray("step_target")]
 transform = Transform3D(-1, -8.74227e-08, 0, 8.44439e-08, -0.965926, -0.258819, 2.26267e-08, -0.258819, 0.965926, -0.199966, 0.00210326, -0.317213)
 debug_shape_custom_color = Color(1, 0, 1, 1)
-script = ExtResource("3_8yvrw")
+script = ExtResource("6_udx74")
 step_target = NodePath("RightLegStepTarget")
 
 [node name="RightLegStepTarget" type="Node3D" parent="Targets/BackRightStepRay"]
@@ -711,7 +710,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000252004, -0.00211195, -3.
 [node name="RightStepRightRay" type="RayCast3D" parent="Targets" node_paths=PackedStringArray("step_target")]
 transform = Transform3D(2.10847e-08, 0.258819, -0.965926, 8.44439e-08, -0.965926, -0.258819, -1, -7.61094e-08, -4.2222e-08, 0.08, 0.002, 0.026)
 debug_shape_custom_color = Color(1, 0, 0, 1)
-script = ExtResource("3_8yvrw")
+script = ExtResource("6_udx74")
 step_target = NodePath("RightLegStepTarget")
 
 [node name="RightLegStepTarget" type="Node3D" parent="Targets/RightStepRightRay"]
@@ -720,7 +719,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000252004, -0.00211195, -3.
 [node name="BackRightStepRightRay" type="RayCast3D" parent="Targets" node_paths=PackedStringArray("step_target")]
 transform = Transform3D(2.10847e-08, -0.258819, -0.965926, -8.44439e-08, -0.965926, 0.258819, -1, 7.61094e-08, -4.2222e-08, -0.45, 0.002, 0.026)
 debug_shape_custom_color = Color(1, 0, 1, 1)
-script = ExtResource("3_8yvrw")
+script = ExtResource("6_udx74")
 step_target = NodePath("RightLegStepTarget")
 
 [node name="RightLegStepTarget" type="Node3D" parent="Targets/BackRightStepRightRay"]

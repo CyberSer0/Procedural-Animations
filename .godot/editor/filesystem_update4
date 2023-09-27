@@ -1,6 +1,5 @@
-res://HumanoidControl.tscn
-res://Player.tscn
-res://NewKinematicCharacter/KinematicChar.tscn
-res://PIDController.gd
-res://Player.gd
-res://PIDController.tscn
+res://Spider/Spider.tscn
+res://Scenes/SpiderScene.tscn
+res://Scenes/HumanoidControl.tscn
+res://Humanoid/Player.tscn
+res://Scenes/PIDController.tscn

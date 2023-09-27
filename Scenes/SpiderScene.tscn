@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=3 uid="uid://dg110pxukkngv"]
+
+[ext_resource type="PackedScene" uid="uid://hfi4dgm7p3kp" path="res://Spider/Spider.tscn" id="1_ceqqb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7xxj"]
+albedo_color = Color(0.337255, 0.337255, 0.337255, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3etus"]
+material = SubResource("StandardMaterial3D_x7xxj")
+size = Vector2(10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_264li"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1n1mj"]
+albedo_color = Color(0.835294, 0.835294, 0.835294, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v7wnd"]
+material = SubResource("StandardMaterial3D_1n1mj")
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3qtbc"]
+albedo_color = Color(1, 0.784314, 0.643137, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y4ejq"]
+material = SubResource("StandardMaterial3D_3qtbc")
+size = Vector2(10, 10)
+
+[node name="SpiderScene" type="Node3D"]
+
+[node name="EnviroContainer" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="EnviroContainer"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnviroContainer/Floor"]
+mesh = SubResource("PlaneMesh_3etus")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnviroContainer/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_264li")
+
+[node name="Wall" type="StaticBody3D" parent="EnviroContainer"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -5, 5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnviroContainer/Wall"]
+mesh = SubResource("PlaneMesh_v7wnd")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnviroContainer/Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_264li")
+
+[node name="Wall2" type="StaticBody3D" parent="EnviroContainer"]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, -1, 0, 4.37114e-08, 0, 1, -4.37114e-08, 0, 5, -5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnviroContainer/Wall2"]
+mesh = SubResource("PlaneMesh_v7wnd")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnviroContainer/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_264li")
+
+[node name="Wall3" type="StaticBody3D" parent="EnviroContainer"]
+transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 1.64203e-15, 0, -8.74228e-08, -1, 5, 5, 4.76837e-07)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnviroContainer/Wall3"]
+mesh = SubResource("PlaneMesh_v7wnd")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnviroContainer/Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_264li")
+
+[node name="Wall4" type="StaticBody3D" parent="EnviroContainer"]
+transform = Transform3D(-4.37114e-08, 1.31134e-07, 1, -1, -3.82137e-15, -4.37114e-08, 0, -1, 1.31134e-07, -9.53674e-07, 5, 5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnviroContainer/Wall4"]
+mesh = SubResource("PlaneMesh_v7wnd")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnviroContainer/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_264li")
+
+[node name="Ceiling" type="StaticBody3D" parent="EnviroContainer"]
+transform = Transform3D(-1.31134e-07, -4.37114e-08, 1, 4.37114e-08, -1, -4.37114e-08, 1, 4.37114e-08, 1.31134e-07, -7.94467e-08, 10, -2.18557e-07)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnviroContainer/Ceiling"]
+mesh = SubResource("PlaneMesh_y4ejq")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnviroContainer/Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_264li")
+
+[node name="Spider" parent="." instance=ExtResource("1_ceqqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="SkeletonIK3D" parent="Spider/Skeleton3D" index="9"]
+tip_bone = &"leg1.control"
+
+[node name="leg1" parent="Spider" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1.29188, 0)
+
+[node name="leg2" parent="Spider" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -3)
+
+[node name="leg3" parent="Spider" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 0)
+
+[node name="leg4" parent="Spider" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 3)
+
+[editable path="Spider"]

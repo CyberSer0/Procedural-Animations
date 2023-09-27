@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Procedural-Animations"
-run/main_scene="res://HumanoidControl.tscn"
-config/features=PackedStringArray("4.0")
+run/main_scene="res://Scenes/HumanoidControl.tscn"
+config/features=PackedStringArray("4.1")
 config/icon="res://icon.svg"
 
 [autoload]

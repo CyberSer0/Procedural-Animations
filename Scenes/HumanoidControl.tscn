@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bhkwy0afvtcfe"]
 
-[ext_resource type="PackedScene" uid="uid://cho4820mf8fox" path="res://Player.tscn" id="2_kfwrc"]
+[ext_resource type="PackedScene" uid="uid://sc3qqt7r5bwk" path="res://Humanoid/Player.tscn" id="2_kfwrc"]
 [ext_resource type="Script" path="res://CameraPoint.gd" id="2_s4kux"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgmj1"]
