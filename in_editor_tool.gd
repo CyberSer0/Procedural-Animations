@@ -1,6 +1,6 @@
 @tool
 extends SkeletonIK3D
 
-func _ready():
+func _enter_tree():
 	start()
 

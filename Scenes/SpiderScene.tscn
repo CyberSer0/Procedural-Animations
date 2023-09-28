@@ -1,6 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://dg110pxukkngv"]
+[gd_scene load_steps=16 format=3 uid="uid://dg110pxukkngv"]
 
 [ext_resource type="PackedScene" uid="uid://hfi4dgm7p3kp" path="res://Spider/Spider.tscn" id="1_ceqqb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c20to"]
+sky_top_color = Color(0.7, 0.955, 1, 1)
+sky_horizon_color = Color(0.776471, 0.811765, 0.670588, 1)
+ground_bottom_color = Color(0.497, 0.67805, 0.71, 1)
+ground_horizon_color = Color(0.776471, 0.811765, 0.670588, 1)
+
+[sub_resource type="Sky" id="Sky_kidyh"]
+sky_material = SubResource("ProceduralSkyMaterial_c20to")
+
+[sub_resource type="Environment" id="Environment_yhbx1"]
+background_mode = 2
+sky = SubResource("Sky_kidyh")
+ambient_light_color = Color(0.858824, 0.858824, 0.858824, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.5
+adjustment_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7xxj"]
 albedo_color = Color(0.337255, 0.337255, 0.337255, 1)
@@ -12,11 +29,25 @@ size = Vector2(10, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_264li"]
 size = Vector3(10, 1, 10)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1n1mj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tj3og"]
 albedo_color = Color(0.835294, 0.835294, 0.835294, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_v7wnd"]
-material = SubResource("StandardMaterial3D_1n1mj")
+material = SubResource("StandardMaterial3D_tj3og")
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5x154"]
+albedo_color = Color(0.709804, 0.709804, 0.709804, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0okof"]
+material = SubResource("StandardMaterial3D_5x154")
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rabqj"]
+albedo_color = Color(0.709804, 0.709804, 0.709804, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jy0qd"]
+material = SubResource("StandardMaterial3D_rabqj")
 size = Vector2(10, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3qtbc"]
@@ -27,6 +58,23 @@ material = SubResource("StandardMaterial3D_3qtbc")
 size = Vector2(10, 10)
 
 [node name="SpiderScene" type="Node3D"]
+
+[node name="GameEssentials" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="GameEssentials"]
+transform = Transform3D(0.707107, -0.408607, 0.577096, 0, 0.816138, 0.577858, -0.707107, -0.408607, 0.577096, 5.35836, 9.18386, 5.35836)
+projection = 1
+size = 15.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="GameEssentials"]
+environment = SubResource("Environment_yhbx1")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GameEssentials"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+light_color = Color(0.94902, 1, 0.780392, 1)
+light_energy = 1.5
+light_specular = 5.0
+omni_range = 10.0
 
 [node name="EnviroContainer" type="Node3D" parent="."]
 
@@ -55,7 +103,7 @@ shape = SubResource("BoxShape3D_264li")
 transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, -1, 0, 4.37114e-08, 0, 1, -4.37114e-08, 0, 5, -5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EnviroContainer/Wall2"]
-mesh = SubResource("PlaneMesh_v7wnd")
+mesh = SubResource("PlaneMesh_0okof")
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnviroContainer/Wall2"]
@@ -77,7 +125,7 @@ shape = SubResource("BoxShape3D_264li")
 transform = Transform3D(-4.37114e-08, 1.31134e-07, 1, -1, -3.82137e-15, -4.37114e-08, 0, -1, 1.31134e-07, -9.53674e-07, 5, 5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EnviroContainer/Wall4"]
-mesh = SubResource("PlaneMesh_v7wnd")
+mesh = SubResource("PlaneMesh_jy0qd")
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnviroContainer/Wall4"]
@@ -96,21 +144,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_264li")
 
 [node name="Spider" parent="." instance=ExtResource("1_ceqqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
-[node name="SkeletonIK3D" parent="Spider/Skeleton3D" index="9"]
-tip_bone = &"leg1.control"
-
-[node name="leg1" parent="Spider" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1.29188, 0)
-
-[node name="leg2" parent="Spider" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -3)
-
-[node name="leg3" parent="Spider" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 0)
-
-[node name="leg4" parent="Spider" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 3)
-
-[editable path="Spider"]
