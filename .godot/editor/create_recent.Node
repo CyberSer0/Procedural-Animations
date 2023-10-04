@@ -1,5 +1,5 @@
-CharacterBody3D
 RayCast3D
+CharacterBody3D
 Node3D
 OmniLight3D
 WorldEnvironment

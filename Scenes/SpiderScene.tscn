@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://dg110pxukkngv"]
+[gd_scene load_steps=17 format=3 uid="uid://dg110pxukkngv"]
 
 [ext_resource type="PackedScene" uid="uid://hfi4dgm7p3kp" path="res://Spider/Spider.tscn" id="1_ceqqb"]
+[ext_resource type="Script" path="res://Scenes/CameraFollow.gd" id="1_pv0sq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c20to"]
 sky_top_color = Color(0.7, 0.955, 1, 1)
@@ -61,10 +62,12 @@ size = Vector2(10, 10)
 
 [node name="GameEssentials" type="Node3D" parent="."]
 
-[node name="Camera3D" type="Camera3D" parent="GameEssentials"]
-transform = Transform3D(0.707107, -0.408607, 0.577096, 0, 0.816138, 0.577858, -0.707107, -0.408607, 0.577096, 5.35836, 9.18386, 5.35836)
+[node name="Camera3D" type="Camera3D" parent="GameEssentials" node_paths=PackedStringArray("node_to_follow")]
+transform = Transform3D(0.707107, -0.408607, 0.577096, 0, 0.816138, 0.577858, -0.707107, -0.408607, 0.577096, 5.358, 8, 5.358)
 projection = 1
 size = 15.0
+script = ExtResource("1_pv0sq")
+node_to_follow = NodePath("../../Spider")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="GameEssentials"]
 environment = SubResource("Environment_yhbx1")

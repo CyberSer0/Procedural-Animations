@@ -33,6 +33,46 @@ target_position = Vector3(0, 0, -1)
 debug_shape_custom_color = Color(0.964706, 0, 0.478431, 1)
 debug_shape_thickness = 5
 
+[node name="Leg1Basepos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
+gizmo_extents = 1.0
+
+[node name="RayCast3D" type="RayCast3D" parent="Leg1Basepos"]
+target_position = Vector3(0, 2, 0)
+collide_with_bodies = false
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="Leg2Basepos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+gizmo_extents = 1.0
+
+[node name="RayCast3D" type="RayCast3D" parent="Leg2Basepos"]
+target_position = Vector3(0, 2, 0)
+collide_with_bodies = false
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="Leg3Basepos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+gizmo_extents = 1.0
+
+[node name="RayCast3D" type="RayCast3D" parent="Leg3Basepos"]
+target_position = Vector3(0, 2, 0)
+collide_with_bodies = false
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="Leg4Basepos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+gizmo_extents = 1.0
+
+[node name="RayCast3D" type="RayCast3D" parent="Leg4Basepos"]
+target_position = Vector3(0, 2, 0)
+collide_with_bodies = false
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
 [node name="Detectors" type="Node3D" parent="."]
 
 [node name="F_RayLeg1" type="RayCast3D" parent="Detectors"]
