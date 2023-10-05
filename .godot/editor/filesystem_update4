@@ -1,4 +1,3 @@
 res://Scenes/SpiderScene.tscn
 res://Spider/Spider.tscn
 res://Spider/Spider.gd
-res://Scenes/CameraFollow.gd

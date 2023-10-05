@@ -3,25 +3,22 @@ extends CharacterBody3D
 @export var SPEED : float = 10.0
 @export var ROTATION_SPEED : float = 2.0
 
-@export var STEP_DISTANCE : float = 2.0
+@export var STEP_DISTANCE : float = 1.5
 
 var is_leg1_moving : bool = false
 var is_leg2_moving : bool = false
 var is_leg3_moving : bool = false
 var is_leg4_moving : bool = false
 
-var can_walk : bool = true
 
-func _ready():
-	$Leg1Control.global_position = global_position + $Leg1Basepos.position
 
 func _physics_process(delta):
-	print($Leg1Control.position.distance_to($Leg1Basepos.position))
+	print($Leg1Control.global_position.distance_to(global_position + $Leg1Basepos.position))
 	velocity = global_transform.basis.z * Input.get_axis("move_forward", "move_backwards") * SPEED
 	rotation_degrees += global_transform.basis.y * Input.get_axis("move_right", "move_left") * ROTATION_SPEED
 	move_and_slide()
 	control_legs()
-		
+	
 
 func control_legs():	
 	if $Leg1Control.global_position.distance_to(global_position + $Leg1Basepos.position) > STEP_DISTANCE or $Leg3Control.global_position.distance_to(global_position + $Leg3Basepos.position) > STEP_DISTANCE:
@@ -37,9 +34,5 @@ func step(control : Node, target_value : Vector3, is_leg_moving : bool):
 	print("Leg1: ", is_leg1_moving, "\t| Leg2: ", is_leg2_moving, "\t| Leg3: ", is_leg3_moving, "\t| Leg4: ", is_leg4_moving)
 	t.tween_property(control, "global_position", half_way + owner.basis.y / 2, 0.1)
 	t.tween_property(control, "global_position", target_value, 0.1)
-	t.connect("finished", on_step_finished)
 
-func on_step_finished(control : Node):
-	can_walk = true
-	print("can walk again")
 	
