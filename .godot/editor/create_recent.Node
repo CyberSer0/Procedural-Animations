@@ -1,6 +1,8 @@
+Node3D
+Node
+CollisionShape3D
 RayCast3D
 CharacterBody3D
-Node3D
 OmniLight3D
 WorldEnvironment
 DirectionalLight3D
@@ -8,7 +10,6 @@ Camera3D
 Marker3D
 SkeletonIK3D
 StaticBody3D
-CollisionShape3D
 MeshInstance3D
 RigidBody3D
 Timer
@@ -18,7 +19,6 @@ CanvasLayer
 RigidBody2D
 AnimationPlayer
 AnimationTree
-Node
 BoneAttachment3D
 PhysicalBone3D
 Skeleton3D
