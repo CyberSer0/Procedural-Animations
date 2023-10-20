@@ -1,7 +1,5 @@
 extends CharacterBody3D
 
-signal front_collision_detected
-
 @export var SPEED : float = 10.0
 @export var ROTATION_SPEED : float = 2.0
 
@@ -12,16 +10,15 @@ signal front_collision_detected
 var can_walk : bool = false
 
 @onready var head_tweener : Tween = get_tree().create_tween()
+@onready var velocity_tweener : Tween = get_tree().create_tween()
 
-#func _ready():
-#	front_collision_detected.connect(on_head_collision_detected(Vector3.ZERO))
+var velocity_intent : Vector3 = Vector3.ZERO
+
 
 func _input(event):
 	if Input.get_axis("move_forward", "move_backwards") or Input.get_axis("move_right", "move_left") or Input.is_action_just_released("move_forward") or Input.is_action_just_released("move_backwards") or Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right"):
 		control_legs()
-	
-#	if $Detectors/F_RayHead.is_colliding and Input.get_axis("move_forward", "move_backwards") > 0:
-#		emit_sgnal("front_collision_detected", -$Detectors/F_RayHead.get_collision_normal)
+#		velocity_intent = MAIN_BODY.global_transform.basis.z * Input.get_axis("move_forward", "move_backwards") * SPEED
 
 
 func _physics_process(delta):
@@ -33,28 +30,68 @@ func _physics_process(delta):
 func control_legs():	
 	if ($Leg1Control.global_position.distance_to(global_position + $Leg1Basepos.position) > STEP_DISTANCE or $Leg3Control.global_position.distance_to(global_position + $Leg3Basepos.position) > STEP_DISTANCE) and can_walk:
 		can_walk = false
-		step($Leg1Control, $Leg1Basepos.global_position)
-		step($Leg3Control, $Leg3Basepos.global_position)
-		step($Leg2Control, $Leg2Basepos.global_position)
-		step($Leg4Control, $Leg4Basepos.global_position)
+		step($Leg1Control, get_target_position($Leg1Basepos.global_position, $Detectors/F_RayLeg1, $Detectors/B_RayLeg1))
+		step($Leg3Control, get_target_position($Leg3Basepos.global_position, $Detectors/F_RayLeg3, $Detectors/B_RayLeg3))
+		step($Leg2Control, get_target_position($Leg2Basepos.global_position, $Detectors/F_RayLeg2, $Detectors/B_RayLeg2))
+		step($Leg4Control, get_target_position($Leg4Basepos.global_position, $Detectors/F_RayLeg4, $Detectors/B_RayLeg4))
 	elif $Leg2Control.global_position.distance_to(global_position + $Leg2Basepos.position) > STEP_DISTANCE or $Leg4Control.global_position.distance_to(global_position + $Leg4Basepos.position) > STEP_DISTANCE: 
 		can_walk = false
-		step($Leg2Control, $Leg2Basepos.global_position)
-		step($Leg4Control, $Leg4Basepos.global_position)
-		step($Leg1Control, $Leg1Basepos.global_position)
-		step($Leg3Control, $Leg3Basepos.global_position)
+		step($Leg2Control, get_target_position($Leg2Basepos.global_position, $Detectors/F_RayLeg2, $Detectors/B_RayLeg2))
+		step($Leg4Control, get_target_position($Leg4Basepos.global_position, $Detectors/F_RayLeg4, $Detectors/B_RayLeg4))
+		step($Leg1Control, get_target_position($Leg1Basepos.global_position, $Detectors/F_RayLeg1, $Detectors/B_RayLeg1))
+		step($Leg3Control, get_target_position($Leg3Basepos.global_position, $Detectors/F_RayLeg3, $Detectors/B_RayLeg3))
+		
+	if Input.get_axis("move_forward", "move_backwards") > 0:
+		$Detectors/B_RayLeg1.enabled = false
+		$Detectors/B_RayLeg2.enabled = false
+		$Detectors/B_RayLeg3.enabled = false
+		$Detectors/B_RayLeg4.enabled = false
+		$Detectors/F_RayLeg1.enabled = true
+		$Detectors/F_RayLeg2.enabled = true
+		$Detectors/F_RayLeg3.enabled = true
+		$Detectors/F_RayLeg4.enabled = true
+	elif Input.get_axis("move_forward", "move_backwards") < 0:
+		$Detectors/F_RayLeg1.enabled = false
+		$Detectors/F_RayLeg2.enabled = false
+		$Detectors/F_RayLeg3.enabled = false
+		$Detectors/F_RayLeg4.enabled = false
+		$Detectors/B_RayLeg1.enabled = true
+		$Detectors/B_RayLeg2.enabled = true
+		$Detectors/B_RayLeg3.enabled = true
+		$Detectors/B_RayLeg4.enabled = true
+#	else:
+#		$Detectors/B_RayLeg1.enabled = false
+#		$Detectors/B_RayLeg2.enabled = false
+#		$Detectors/B_RayLeg3.enabled = false
+#		$Detectors/B_RayLeg4.enabled = false
+#		$Detectors/F_RayLeg1.enabled = false
+#		$Detectors/F_RayLeg2.enabled = false
+#		$Detectors/F_RayLeg3.enabled = false
+#		$Detectors/F_RayLeg4.enabled = false
+		
 
 func step(control : Node, target_value : Vector3):
 	var half_way = (control.global_position + target_value) / 2
 	var t = get_tree().create_tween()
 	t.tween_property(control, "global_position", half_way + owner.basis.y / 2, 0.1)
 	t.tween_property(control, "global_position", target_value, 0.1)
-	t.tween_callback(set_can_walk)
 	
 
 func set_can_walk():
 	can_walk = true
 	
+#func on_head_collision_detected(is_colliding : bool):
+#	if is_colliding:
+#		head_tweener.tween_property(MAIN_BODY, "rotation", rotation, )
 
-#func on_head_collision_detected(new_facing_direction : Vector3):
-#	head_tweener.tween_property(MAIN_BODY, "rotation", rotation, new_facing_direction.rotated(MAIN_BODY.global_transform.basis.x, 90))
+func get_target_position(base_target : Vector3, forward_ray : RayCast3D, backwards_ray : RayCast3D):
+	if forward_ray.is_colliding and !backwards_ray.is_colliding:
+		print("Forward ray: ", forward_ray.get_collision_point())
+		return forward_ray.get_collision_point()
+	elif backwards_ray.is_colliding and !forward_ray.is_colliding:
+		print("Backwards ray: ", backwards_ray.get_collision_point())
+		return backwards_ray.get_collision_point()
+	else: 
+		print("Base target: ", backwards_ray.get_collision_point())
+		return base_target
+	
