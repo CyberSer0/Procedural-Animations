@@ -10,3 +10,4 @@ func _ready():
 func _physics_process(delta):
 	if node_to_follow != null:
 		global_position = node_to_follow.global_position + start_offset
+		
