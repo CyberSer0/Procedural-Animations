@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://hfi4dgm7p3kp"]
+[gd_scene load_steps=5 format=3 uid="uid://hfi4dgm7p3kp"]
 
 [ext_resource type="Script" path="res://Spider/Spider.gd" id="1_48jws"]
 [ext_resource type="Script" path="res://in_editor_tool.gd" id="1_ttyci"]
 [ext_resource type="PackedScene" uid="uid://c1osw0oqll8ty" path="res://Models/spider1.1.blend" id="2_jr1ac"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nlqdv"]
+radius = 1.3115
+height = 2.623
 
 [node name="Spider" type="CharacterBody3D" node_paths=PackedStringArray("MAIN_BODY")]
 script = ExtResource("1_48jws")
@@ -74,69 +78,74 @@ collide_with_bodies = false
 debug_shape_custom_color = Color(0, 1, 0, 1)
 debug_shape_thickness = 5
 
-[node name="Detectors" type="Node3D" parent="."]
+[node name="F_RayHead" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+target_position = Vector3(0, 1, -0.25)
 
-[node name="F_RayLeg1" type="RayCast3D" parent="Detectors"]
+[node name="B_RayHead" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+target_position = Vector3(0, 1, 0.25)
+
+[node name="LegForwardDetectors" type="Node3D" parent="."]
+
+[node name="F_RayLeg1" type="RayCast3D" parent="LegForwardDetectors"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -3, 0, 3)
 target_position = Vector3(0, 4, 0)
 debug_shape_custom_color = Color(1, 0, 0, 1)
 debug_shape_thickness = 5
 
-[node name="F_RayLeg2" type="RayCast3D" parent="Detectors"]
+[node name="F_RayLeg2" type="RayCast3D" parent="LegForwardDetectors"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -3, 0, -3)
 target_position = Vector3(0, 4, 0)
 debug_shape_custom_color = Color(1, 0, 0, 1)
 debug_shape_thickness = 5
 
-[node name="F_RayLeg3" type="RayCast3D" parent="Detectors"]
+[node name="F_RayLeg3" type="RayCast3D" parent="LegForwardDetectors"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 3, 0, -3)
 target_position = Vector3(0, 4, 0)
 debug_shape_custom_color = Color(1, 0, 0, 1)
 debug_shape_thickness = 5
 
-[node name="F_RayLeg4" type="RayCast3D" parent="Detectors"]
+[node name="F_RayLeg4" type="RayCast3D" parent="LegForwardDetectors"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 3, 0, 3)
 target_position = Vector3(0, 4, 0)
 debug_shape_custom_color = Color(1, 0, 0, 1)
 debug_shape_thickness = 5
 
-[node name="B_RayLeg1" type="RayCast3D" parent="Detectors"]
+[node name="LegBackwardsDetectors" type="Node3D" parent="."]
+
+[node name="B_RayLeg1" type="RayCast3D" parent="LegBackwardsDetectors"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -3, 0, 3)
 target_position = Vector3(0, 4, 0)
 debug_shape_custom_color = Color(0, 0.85098, 1, 1)
 debug_shape_thickness = 5
 
-[node name="B_RayLeg2" type="RayCast3D" parent="Detectors"]
+[node name="B_RayLeg2" type="RayCast3D" parent="LegBackwardsDetectors"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -3, 0, -3)
 target_position = Vector3(0, 4, 0)
 debug_shape_custom_color = Color(0, 0.85098, 1, 1)
 debug_shape_thickness = 5
 
-[node name="B_RayLeg3" type="RayCast3D" parent="Detectors"]
+[node name="B_RayLeg3" type="RayCast3D" parent="LegBackwardsDetectors"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 3, 0, -3)
 target_position = Vector3(0, 4, 0)
 debug_shape_custom_color = Color(0, 0.85098, 1, 1)
 debug_shape_thickness = 5
 
-[node name="B_RayLeg4" type="RayCast3D" parent="Detectors"]
+[node name="B_RayLeg4" type="RayCast3D" parent="LegBackwardsDetectors"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 3, 0, 3)
 target_position = Vector3(0, 4, 0)
 debug_shape_custom_color = Color(0, 0.85098, 1, 1)
 debug_shape_thickness = 5
-
-[node name="F_RayHead" type="RayCast3D" parent="Detectors"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
-target_position = Vector3(0, 1, -0.25)
-
-[node name="B_RayHead" type="RayCast3D" parent="Detectors"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
-target_position = Vector3(0, 1, 0.25)
 
 [node name="spider1_1" parent="." instance=ExtResource("2_jr1ac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="StaticBody3D" parent="spider1_1/Spider/Skeleton3D/Body" index="0"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+visible = false
+collision_layer = 0
+collision_mask = 0
 
 [node name="SkeletonIK3D" type="SkeletonIK3D" parent="spider1_1/Spider/Skeleton3D" index="5"]
 process_priority = 1
@@ -173,5 +182,12 @@ use_magnet = true
 magnet = Vector3(0, 10, 0)
 target_node = NodePath("../../../../Leg4Control")
 script = ExtResource("1_ttyci")
+
+[node name="GroundDetectorArea" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="GroundTrigger" type="CollisionShape3D" parent="GroundDetectorArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.990016, 0)
+shape = SubResource("CapsuleShape3D_nlqdv")
 
 [editable path="spider1_1"]

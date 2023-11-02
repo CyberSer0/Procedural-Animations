@@ -1,6 +1,7 @@
+Area3D
+CollisionShape3D
 Node3D
 Node
-CollisionShape3D
 RayCast3D
 CharacterBody3D
 OmniLight3D
