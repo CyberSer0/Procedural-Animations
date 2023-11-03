@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://dg110pxukkngv"]
+[gd_scene load_steps=16 format=3 uid="uid://dg110pxukkngv"]
 
 [ext_resource type="PackedScene" uid="uid://hfi4dgm7p3kp" path="res://Spider/Spider.tscn" id="1_ceqqb"]
-[ext_resource type="Script" path="res://Scenes/CameraMovement.gd" id="1_mtd22"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c20to"]
 sky_top_color = Color(0.7, 0.955, 1, 1)
@@ -62,14 +61,6 @@ size = Vector2(10, 10)
 
 [node name="GameEssentials" type="Node3D" parent="."]
 
-[node name="CameraHolder" type="Node3D" parent="GameEssentials" node_paths=PackedStringArray("node_to_follow")]
-script = ExtResource("1_mtd22")
-node_to_follow = NodePath("../../Spider")
-
-[node name="Camera3D" type="Camera3D" parent="GameEssentials/CameraHolder"]
-transform = Transform3D(0.707107, -0.408607, 0.577097, 0, 0.816138, 0.577857, -0.707107, -0.408607, 0.577097, 5.358, 8, 5.358)
-size = 15.0
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="GameEssentials"]
 environment = SubResource("Environment_yhbx1")
 
@@ -83,6 +74,7 @@ omni_range = 10.0
 [node name="EnviroContainer" type="Node3D" parent="."]
 
 [node name="Floor" type="StaticBody3D" parent="EnviroContainer"]
+collision_layer = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EnviroContainer/Floor"]
 mesh = SubResource("PlaneMesh_3etus")
@@ -94,6 +86,7 @@ shape = SubResource("BoxShape3D_264li")
 
 [node name="Wall" type="StaticBody3D" parent="EnviroContainer"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -5, 5, 0)
+collision_layer = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EnviroContainer/Wall"]
 mesh = SubResource("PlaneMesh_v7wnd")
@@ -105,6 +98,7 @@ shape = SubResource("BoxShape3D_264li")
 
 [node name="Wall2" type="StaticBody3D" parent="EnviroContainer"]
 transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, -0.5, 0.866025, -1.59995e-08, 0.866025, 0.5, -5.97109e-08, 0, 2, -9)
+collision_layer = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EnviroContainer/Wall2"]
 transform = Transform3D(1, 0, 8.35188e-23, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -117,6 +111,7 @@ shape = SubResource("BoxShape3D_264li")
 
 [node name="Wall3" type="StaticBody3D" parent="EnviroContainer"]
 transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 1.64203e-15, 0, -8.74228e-08, -1, 5, 5, 4.76837e-07)
+collision_layer = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EnviroContainer/Wall3"]
 mesh = SubResource("PlaneMesh_v7wnd")
@@ -128,6 +123,7 @@ shape = SubResource("BoxShape3D_264li")
 
 [node name="Wall4" type="StaticBody3D" parent="EnviroContainer"]
 transform = Transform3D(-4.37114e-08, 1.31134e-07, 1, -1, -3.82137e-15, -4.37114e-08, 0, -1, 1.31134e-07, -9.53674e-07, 5, 5)
+collision_layer = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EnviroContainer/Wall4"]
 mesh = SubResource("PlaneMesh_jy0qd")
@@ -139,6 +135,7 @@ shape = SubResource("BoxShape3D_264li")
 
 [node name="Ceiling" type="StaticBody3D" parent="EnviroContainer"]
 transform = Transform3D(-1.31134e-07, -4.37114e-08, 1, 4.37114e-08, -1, -4.37114e-08, 1, 4.37114e-08, 1.31134e-07, -7.94467e-08, 10, -2.18557e-07)
+collision_layer = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EnviroContainer/Ceiling"]
 mesh = SubResource("PlaneMesh_y4ejq")
@@ -152,7 +149,6 @@ shape = SubResource("BoxShape3D_264li")
 transform = Transform3D(1, 0, 0, 0, 0.999584, -0.0288463, 0, 0.0288463, 0.999584, -0.00938129, 0.017879, -0.000344276)
 
 [node name="StaticBody3D" parent="Spider/spider1_1/Spider/Skeleton3D/Body" index="0"]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 visible = true
 
 [editable path="Spider"]

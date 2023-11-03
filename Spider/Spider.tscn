@@ -8,9 +8,12 @@
 radius = 1.3115
 height = 2.623
 
-[node name="Spider" type="CharacterBody3D" node_paths=PackedStringArray("MAIN_BODY")]
+[node name="Spider" type="CharacterBody3D" node_paths=PackedStringArray("MAIN_BODY", "CAM_H_PIVOT", "CAM_V_PIVOT")]
+collision_mask = 2
 script = ExtResource("1_48jws")
 MAIN_BODY = NodePath("spider1_1")
+CAM_H_PIVOT = NodePath("spider1_1/CamHPivot")
+CAM_V_PIVOT = NodePath("spider1_1/CamHPivot/CamVPivot")
 
 [node name="Leg1Control" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
@@ -183,8 +186,21 @@ magnet = Vector3(0, 10, 0)
 target_node = NodePath("../../../../Leg4Control")
 script = ExtResource("1_ttyci")
 
+[node name="CamHPivot" type="Node3D" parent="spider1_1"]
+
+[node name="CamVPivot" type="Node3D" parent="spider1_1/CamHPivot"]
+
+[node name="CameraArm" type="SpringArm3D" parent="spider1_1/CamHPivot/CamVPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
+spring_length = 6.0
+margin = 2.0
+
+[node name="Camera3D" type="Camera3D" parent="spider1_1/CamHPivot/CamVPivot/CameraArm"]
+transform = Transform3D(1, 0, 0, 0, 0.997911, -0.064602, 0, 0.064602, 0.997911, 0, 1.19209e-07, 6)
+fov = 100.0
+
 [node name="GroundDetectorArea" type="Area3D" parent="."]
-collision_layer = 0
+collision_mask = 2
 
 [node name="GroundTrigger" type="CollisionShape3D" parent="GroundDetectorArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.990016, 0)
