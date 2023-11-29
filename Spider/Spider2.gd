@@ -6,9 +6,9 @@ extends CharacterBody3D
 @export var CAM_V_PIVOT : Node3D
 
 @export_category("Variables")
-@export var MOVEMENT_SPEED : float = 5.0
-@export var TURN_SPEED : float = 1.0
-@export var GROUND_OFFSET : float = 2
+@export var MOVEMENT_SPEED : float = 5
+@export var TURN_SPEED : float = 2.0
+@export var GROUND_OFFSET : float = 2.25
 
 @export_category("Leg targets")
 @export var LEG1 : Marker3D
@@ -21,7 +21,7 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
-func _process(delta):
+func _physics_process(delta):
 	var plane1 = Plane(LEG1.global_position, LEG2.global_position, LEG3.global_position)
 	var plane2 = Plane(LEG3.global_position, LEG4.global_position, LEG1.global_position)
 	var avg_normal = ((plane1.normal + plane2.normal) / 2).normalized()
@@ -49,7 +49,7 @@ func _input(event):
 		else:
 			CAM_H_PIVOT.rotate_object_local(transform.basis.y, deg_to_rad(-event.relative.x * GLOBALS.MOUSE_SENS))			
 		CAM_V_PIVOT.rotate_object_local(CAM_V_PIVOT.transform.basis.x, deg_to_rad(-event.relative.y * GLOBALS.MOUSE_SENS))
-		CAM_V_PIVOT.rotation.x = clamp(CAM_V_PIVOT.rotation.x, deg_to_rad(-75), deg_to_rad(30))
+#		CAM_V_PIVOT.rotation.x = clamp(CAM_V_PIVOT.rotation.x, deg_to_rad(-75), deg_to_rad(30))
 
 
 func _handle_movement(delta):

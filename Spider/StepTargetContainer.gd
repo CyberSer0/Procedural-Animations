@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var OFFSET : float = 20.0
+@export var OFFSET : float = 25.0
 
 @onready var parent = get_parent_node_3d()
 @onready var previous_position = parent.global_position

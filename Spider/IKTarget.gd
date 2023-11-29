@@ -3,7 +3,7 @@ extends Marker3D
 
 @export_category("Step variables")
 @export var STEP_TARGET : Node3D
-@export var STEP_DISTANCE : float = 2.5
+@export var STEP_DISTANCE : float = 2
 
 @export_category("Targets")
 @export var ADJACENT_TARGET : Node3D
@@ -11,7 +11,7 @@ extends Marker3D
 
 var is_stepping : bool = false
 
-func _process(delta):
+func _physics_process(delta):
 	if !is_stepping && !ADJACENT_TARGET.is_stepping && abs(global_position.distance_to(STEP_TARGET.global_position)) > STEP_DISTANCE:
 		step()
 		OPPOSITE_TARGET.step()

@@ -1,4 +1,6 @@
 res://Scenes/SpiderScene.tscn
 res://Spider/Spider2.tscn
-res://Spider/IKTarget.gd
 res://Spider/Spider2.gd
+res://Spider/Spider.gd
+res://Spider/IKTarget.gd
+res://Spider/StepTargetContainer.gd

@@ -76,7 +76,7 @@ transform = Transform3D(1, 0, 0, 0, 0.997911, -0.064602, 0, 0.064602, 0.997911, 
 fov = 100.0
 
 [node name="Leg1IKTarget" type="Marker3D" parent="." node_paths=PackedStringArray("STEP_TARGET", "ADJACENT_TARGET", "OPPOSITE_TARGET")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, -1, 2.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17, -1, 2.17)
 top_level = true
 script = ExtResource("4_0pdv1")
 STEP_TARGET = NodePath("../StepTargetContainer/Leg1Ray/Leg1StepTarget")
@@ -84,7 +84,7 @@ ADJACENT_TARGET = NodePath("../Leg4IKTarget")
 OPPOSITE_TARGET = NodePath("../Leg3IKTarget")
 
 [node name="Leg2IKTarget" type="Marker3D" parent="." node_paths=PackedStringArray("STEP_TARGET", "ADJACENT_TARGET", "OPPOSITE_TARGET")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, -1, -2.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17, -1, -2.17)
 top_level = true
 script = ExtResource("4_0pdv1")
 STEP_TARGET = NodePath("../StepTargetContainer/Leg2Ray/Leg2StepTarget")
@@ -92,7 +92,7 @@ ADJACENT_TARGET = NodePath("../Leg3IKTarget")
 OPPOSITE_TARGET = NodePath("../Leg4IKTarget")
 
 [node name="Leg3IKTarget" type="Marker3D" parent="." node_paths=PackedStringArray("STEP_TARGET", "ADJACENT_TARGET", "OPPOSITE_TARGET")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, -1, -2.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.17, -1, -2.17)
 top_level = true
 script = ExtResource("4_0pdv1")
 STEP_TARGET = NodePath("../StepTargetContainer/Leg3Ray/Leg3StepTarget")
@@ -100,10 +100,10 @@ ADJACENT_TARGET = NodePath("../Leg2IKTarget")
 OPPOSITE_TARGET = NodePath("../Leg1IKTarget")
 
 [node name="Leg4IKTarget" type="Marker3D" parent="." node_paths=PackedStringArray("STEP_TARGET", "ADJACENT_TARGET", "OPPOSITE_TARGET")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, -1, 2.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.17, -1, 2.17)
 top_level = true
 script = ExtResource("4_0pdv1")
-STEP_TARGET = NodePath("../StepTargetContainer/Leg4Ray/Leg4StepTarget")
+STEP_TARGET = NodePath("../StepTargetContainer/Leg4Ray/Leg4IKTarget")
 ADJACENT_TARGET = NodePath("../Leg1IKTarget")
 OPPOSITE_TARGET = NodePath("../Leg2IKTarget")
 
@@ -112,43 +112,43 @@ script = ExtResource("5_kw3wd")
 OFFSET = 10.0
 
 [node name="Leg1Ray" type="RayCast3D" parent="StepTargetContainer" node_paths=PackedStringArray("STEP_TARGET")]
-transform = Transform3D(0.996195, 0.0871557, 0, -0.0868241, 0.992404, 0.0871557, 0.00759612, -0.0868241, 0.996195, -2.40094, 3.03324, 2.40437)
+transform = Transform3D(0.996195, 0.0871557, 0, -0.0868241, 0.992404, 0.0871557, 0.00759612, -0.0868241, 0.996195, -1.82609, 2.93269, 1.82628)
 target_position = Vector3(0, -7.5, 0)
 script = ExtResource("6_5lqds")
 STEP_TARGET = NodePath("Leg1StepTarget")
 
 [node name="Leg1StepTarget" type="Marker3D" parent="StepTargetContainer/Leg1Ray"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, -1, 2.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17, -1, 2.17)
 top_level = true
 
 [node name="Leg2Ray" type="RayCast3D" parent="StepTargetContainer" node_paths=PackedStringArray("STEP_TARGET")]
-transform = Transform3D(0.996195, 0.0871557, 0, -0.0868241, 0.992404, -0.0871557, -0.00759612, 0.0868241, 0.996195, -2.401, 3.033, -2.404)
+transform = Transform3D(0.996195, 0.0871557, 0, -0.0868241, 0.992404, -0.0871557, -0.00759612, 0.0868241, 0.996195, -1.826, 2.933, -1.826)
 target_position = Vector3(0, -7.5, 0)
 script = ExtResource("6_5lqds")
 STEP_TARGET = NodePath("Leg2StepTarget")
 
 [node name="Leg2StepTarget" type="Marker3D" parent="StepTargetContainer/Leg2Ray"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, -1, -2.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17, -1, -2.17)
 top_level = true
 
 [node name="Leg3Ray" type="RayCast3D" parent="StepTargetContainer" node_paths=PackedStringArray("STEP_TARGET")]
-transform = Transform3D(0.996195, -0.0871557, 0, 0.0868241, 0.992404, -0.0871557, 0.00759612, 0.0868241, 0.996195, 2.404, 3.033, -2.404)
+transform = Transform3D(0.996195, -0.0871557, 0, 0.0868241, 0.992404, -0.0871557, 0.00759612, 0.0868241, 0.996195, 1.826, 2.933, -1.826)
 target_position = Vector3(0, -7.5, 0)
 script = ExtResource("6_5lqds")
 STEP_TARGET = NodePath("Leg3StepTarget")
 
 [node name="Leg3StepTarget" type="Marker3D" parent="StepTargetContainer/Leg3Ray"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, -1, -2.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.17, -1, -2.17)
 top_level = true
 
 [node name="Leg4Ray" type="RayCast3D" parent="StepTargetContainer" node_paths=PackedStringArray("STEP_TARGET")]
-transform = Transform3D(0.996195, -0.0871557, 0, 0.0868241, 0.992404, 0.0871557, -0.00759612, -0.0868241, 0.996195, 2.404, 3.033, 2.404)
+transform = Transform3D(0.996195, -0.0871557, 0, 0.0868241, 0.992404, 0.0871557, -0.00759612, -0.0868241, 0.996195, 1.826, 2.933, 1.826)
 target_position = Vector3(0, -7.5, 0)
 script = ExtResource("6_5lqds")
-STEP_TARGET = NodePath("Leg4StepTarget")
+STEP_TARGET = NodePath("Leg4IKTarget")
 
-[node name="Leg4StepTarget" type="Marker3D" parent="StepTargetContainer/Leg4Ray"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, -1, 2.75)
+[node name="Leg4IKTarget" type="Marker3D" parent="StepTargetContainer/Leg4Ray"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.17, -1, 2.17)
 top_level = true
 
 [editable path="spider1_1"]
